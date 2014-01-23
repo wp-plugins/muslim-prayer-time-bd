@@ -1,0 +1,45 @@
+.prayer-html-box {
+	background: #FAFAFA;
+	width: 93%;
+	margin-left:3%;
+}
+.prayer-name {
+	background: #4189dd;
+	border: 1px solid #19292E;
+	color: #FAFAFA;
+	display: block;
+	font-size: 16px;
+	padding: 5px;
+	text-align: center;
+}
+.prayer-time {
+	background: #4189dd;
+	border: 1px solid #19292E;
+	color: #FAFAFA;
+	display: block;
+	font-size: 16px;
+	padding: 5px;
+	text-align: center;
+}
+.district-box {
+	background: #4189dd;
+	text-align: center;
+	font-size:14px;
+	color:#FAFAFA;
+	width:60%;
+	cursor: pointer;
+	margin-right:5px;
+	padding: 5px;
+}
+.submit-box {
+	font-size: 12px;
+	border: 1px solid #cccccc;
+	padding:5px;
+	background:#364D55;
+	color:#FAFAFA;
+	font-weight: bold;
+	cursor:pointer;
+}
+.submit-box:hover {
+	background:#364D55;
+}
