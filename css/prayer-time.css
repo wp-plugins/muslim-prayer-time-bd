@@ -26,20 +26,8 @@
 	text-align: center;
 	font-size:14px;
 	color:#FAFAFA;
-	width:60%;
+	width:75%;
 	cursor: pointer;
 	margin-right:5px;
 	padding: 5px;
-}
-.submit-box {
-	font-size: 12px;
-	border: 1px solid #cccccc;
-	padding:5px;
-	background:#364D55;
-	color:#FAFAFA;
-	font-weight: bold;
-	cursor:pointer;
-}
-.submit-box:hover {
-	background:#364D55;
 }

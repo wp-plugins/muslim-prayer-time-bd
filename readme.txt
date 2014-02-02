@@ -1,10 +1,9 @@
 === Muslim Prayer Time BD ===
-Contributors: Iftekhar
-Author URI: http://profiles.wordpress.org/moviehour/
+Contributors: moviehour
 Requires at least: 3.0
-Tested up to: 3.8
+Tested up to: 3.8.1
 Tags: Iftekhar, muslim, prayer time, namaz time, salah, salat, bangladesh, tips4blog
-Stable Tag: 1.0
+Stable Tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,19 +24,21 @@ From the frontend, you can display a daily prayer timetable for your own place. 
 = Features: =
 - The Prayer timetable will be generated automatically.
 - Provides the ability to display a daily prayer timetable for your place.
-- Please note, that this is the first release of this widget. Please leave comment or suggestion for its improvement.
+- Please leave comment or suggestion for improvement.
 
 
 = Credits =
 * Developer: [Md. Iftekharul Ibna Alam](http://facebook.com/IKIAlam)
-* E-Mail: moviehour@gmail.com
 * Website: [www.tips4blog.com](http://www.tips4blog.com)
 
 
 == Changelog ==
 
-= 1.0 (22-1-2014) = 
+= 1.0 (23-1-2014) = 
 * First release.
+
+= 1.1 (3-2-2014) = 
+* Second release.
 
 
 == Installation ==
