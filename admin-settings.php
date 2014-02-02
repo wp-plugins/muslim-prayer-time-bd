@@ -52,7 +52,6 @@ function mptb_plugin_menu() {
 		<h3 class="hndle" style="padding:5px; color:#007193;">Credits</h3>
 		<div class="inside">
 			<p>Developer: <a href="http://facebook.com/IKIAlam">Iftekhar</a><br/>
-			E-Mail: moviehour@gmail.com<br/>
 			Website: <a href="http://www.tips4blog.com/" target="_blank">www.tips4blog.com</a></p>
 		</div>
 	</div>
@@ -61,10 +60,10 @@ function mptb_plugin_menu() {
 		<h3 class="hndle" style="padding:5px; color:#007193;">Plugin Info</h3>
 		<div class="inside">
 			<p>Price: Free!<br/>
-			Version: 1.0<br/>
-			Scripts: PHP + CSS.<br/>
+			Version: 1.1<br/>
+			Scripts: PHP + CSS + JS.<br/>
 			Requires: Wordpress 3.0+<br/>
-			First release: 22-Jan-2014<br/>
+			First release: 23-Jan-2014<br/>
 			Published under: <a href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License</a><br/>
 			<a href="http://wordpress.org/plugins/muslim-prayer-time-bd/faq/">FAQ</a> | <a href="http://wordpress.org/plugins/muslim-prayer-time-bd/changelog/">Changelog</a><br/></p>
 		</div>

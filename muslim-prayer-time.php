@@ -5,7 +5,7 @@ Plugin URI: http://wordpress.org/plugins/muslim-prayer-time-bd/
 Description: "Muslim Prayer Time BD" plugin provides the ability to display prayer (salah) times for BD Muslims with pretty widget.
 Author: Iftekhar
 Author URI: http://profiles.wordpress.org/moviehour/
-Version: 1.0
+Version: 1.1
 */
 
 /*  Copyright 2014  Iftekhar  (email : moviehour@gmail.com)
@@ -226,16 +226,21 @@ function mptb_muslim_prayer_time() {
 	$city_states = array( 'কক্সবাজার', 'কুমিল্লা', 'কিশোরগঞ্জ', 'কুষ্টিয়া', 'কুড়িগ্রাম', 'খাগড়াছড়ি', 'খুলনা', 'গাইবান্ধা', 'গাজীপুর', 'গোপালগঞ্জ', 'চট্টগ্রাম', 'চাঁদপুর', 'চাঁপাইনবাবগঞ্জ', 'চুয়াডাঙ্গা', 'জামালপুর', 'জয়পুরহাট', 'ঝিনাইদহ', 'ঝালকাঠি', 'টাঙ্গাইল', 'ঠাকুরগাঁও', 'ঢাকা', 'দিনাজপুর', 'নওগাঁ', 'নাটোর', 'নেত্রকোনা', 'নরসিংদী', 'নারায়ণগঞ্জ', 'নীলফামারী', 'নোয়াখালী', 'নড়াইল', 'পটুয়াখালী', 'পঞ্চগড়', 'পাবনা', 'পিরোজপুর', 'ফেনী', 'ফরিদপুর', 'বাগেরহাট', 'বগুড়া', 'বান্দরবান', 'বরগুনা', 'বরিশাল', 'ব্রাহ্মণবাড়িয়া', 'ভোলা', 'মাগুরা', 'মাদারীপুর', 'মানিকগঞ্জ', 'মুন্সিগঞ্জ', 'মৌলভীবাজার', 'ময়মনসিংহ', 'মেহেরপুর', 'যশোর', 'রাঙামাটি', 'রাজবাড়ী', 'রাজশাহী', 'রংপুর', 'লালমনিরহাট', 'লক্ষ্মীপুর', 'শেরপুর', 'শরিয়তপুর', 'সাতক্ষীরা', 'সুনামগঞ্জ', 'সিরাজগঞ্জ', 'সিলেট', 'হবিগঞ্জ' );
 ?>
 <div class="prayer-html-box" id="prayerDis">
+	<script type="text/javascript">
+		function prayerOnChange() {
+			jQuery("#city_time").submit();
+		}
+	</script>
 	<table width="100%" cellspacing="1" cellpadding="1">
 		<tr>
-			<td colspan="2"><form action="#prayerDis" method="post" name="city_time">
-				<select size="1" name="cityname" class="district-box">
+			<td colspan="2"><form id="city_time" action="#prayerDis" method="post" name="city_time">
+				<select id="cityname" name="cityname" class="district-box" onChange="prayerOnChange();">
 					<option value="" selected="selected">
 						<?php if($_POST['cityname']) { echo $_POST['cityname']; } else { echo 'ঢাকা'; } ?>
 					</option>
 					<?php foreach($city_states as $city) { echo '<option value="'.$city.'">' . $city . '</option>'; } ?>
 				</select>
-				<input type="submit" name="submit_city" class="submit-box" value="জমা" />
+				<input type="hidden" name="submit_city" value="Submit" />
 			</form></td>
 		</tr>
 		<?php
