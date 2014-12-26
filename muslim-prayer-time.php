@@ -5,7 +5,7 @@ Plugin URI: http://wordpress.org/plugins/muslim-prayer-time-bd/
 Description: "Muslim Prayer Time BD" plugin provides the ability to display prayer (salah) times for BD Muslims with pretty widget.
 Author: Iftekhar
 Author URI: http://profiles.wordpress.org/moviehour/
-Version: 1.1
+Version: 1.2
 */
 
 /*  Copyright 2014  Iftekhar  (email : moviehour@gmail.com)
@@ -37,22 +37,26 @@ function bn_prayer_time($number) {
 	$number= str_replace("9", "৯", $number);
 	return $number;
 }
-
+function district_lists(){
+	$district_lists = array( 'কক্সবাজার', 'কুমিল্লা', 'কিশোরগঞ্জ', 'কুষ্টিয়া', 'কুড়িগ্রাম', 'খাগড়াছড়ি', 'খুলনা', 'গাইবান্ধা', 'গাজীপুর', 'গোপালগঞ্জ', 'চট্টগ্রাম', 'চাঁদপুর', 'চাঁপাইনবাবগঞ্জ', 'চুয়াডাঙ্গা', 'জামালপুর', 'জয়পুরহাট', 'ঝিনাইদহ', 'ঝালকাঠি', 'টাঙ্গাইল', 'ঠাকুরগাঁও', 'ঢাকা', 'দিনাজপুর', 'নওগাঁ', 'নাটোর', 'নেত্রকোনা', 'নরসিংদী', 'নারায়ণগঞ্জ', 'নীলফামারী', 'নোয়াখালী', 'নড়াইল', 'পটুয়াখালী', 'পঞ্চগড়', 'পাবনা', 'পিরোজপুর', 'ফেনী', 'ফরিদপুর', 'বাগেরহাট', 'বগুড়া', 'বান্দরবান', 'বরগুনা', 'বরিশাল', 'ব্রাহ্মণবাড়িয়া', 'ভোলা', 'মাগুরা', 'মাদারীপুর', 'মানিকগঞ্জ', 'মুন্সিগঞ্জ', 'মৌলভীবাজার', 'ময়মনসিংহ', 'মেহেরপুর', 'যশোর', 'রাঙামাটি', 'রাজবাড়ী', 'রাজশাহী', 'রংপুর', 'লালমনিরহাট', 'লক্ষ্মীপুর', 'শেরপুর', 'শরিয়তপুর', 'সাতক্ষীরা', 'সুনামগঞ্জ', 'সিরাজগঞ্জ', 'সিলেট', 'হবিগঞ্জ' );
+	return $district_lists;
+}
 function prayer_district_time($prayer_name, $mod_time = '') {
 	$time = strtotime($prayer_name);
 	$prayer_time = date("g:i", strtotime($mod_time, $time));
 	return $prayer_time;
 }
-
 function mptb_enqueue_scripts(){
 	wp_enqueue_style('prayer-time', WP_PLUGIN_URL .'/muslim-prayer-time-bd/css/prayer-time.css?v=1.0');
 }
 add_action('init', 'mptb_enqueue_scripts');
-
 function mptb_muslim_prayer_time() {
 	$t4b = 0;
+	$city_states = district_lists();
+	$mptb_city = get_option('default_city') != '' ? get_option('default_city') : 'ঢাকা';
 	$month = date('m');
 	$day_number = date('j');
+	$adjust_time = '';
 	if($month == 1) {
 		if($day_number < 5) {
 			$time_schedule = array( 'sehri' => '5:19', 'fajr' => '5:24', 'sunrise' => '6:41', 'duhr' => '12:06', 'asr' => '3:46', 'maghrib' => '5:27', 'isha' => '6:45' );
@@ -222,8 +226,24 @@ function mptb_muslim_prayer_time() {
 			$time_schedule = array( 'sehri' => '5:17', 'fajr' => '5:12', 'sunrise' => '6:38', 'duhr' => '12:02', 'asr' => '3:42', 'maghrib' => '5:22', 'isha' => '6:41' );
 		}
 	}
-
-	$city_states = array( 'কক্সবাজার', 'কুমিল্লা', 'কিশোরগঞ্জ', 'কুষ্টিয়া', 'কুড়িগ্রাম', 'খাগড়াছড়ি', 'খুলনা', 'গাইবান্ধা', 'গাজীপুর', 'গোপালগঞ্জ', 'চট্টগ্রাম', 'চাঁদপুর', 'চাঁপাইনবাবগঞ্জ', 'চুয়াডাঙ্গা', 'জামালপুর', 'জয়পুরহাট', 'ঝিনাইদহ', 'ঝালকাঠি', 'টাঙ্গাইল', 'ঠাকুরগাঁও', 'ঢাকা', 'দিনাজপুর', 'নওগাঁ', 'নাটোর', 'নেত্রকোনা', 'নরসিংদী', 'নারায়ণগঞ্জ', 'নীলফামারী', 'নোয়াখালী', 'নড়াইল', 'পটুয়াখালী', 'পঞ্চগড়', 'পাবনা', 'পিরোজপুর', 'ফেনী', 'ফরিদপুর', 'বাগেরহাট', 'বগুড়া', 'বান্দরবান', 'বরগুনা', 'বরিশাল', 'ব্রাহ্মণবাড়িয়া', 'ভোলা', 'মাগুরা', 'মাদারীপুর', 'মানিকগঞ্জ', 'মুন্সিগঞ্জ', 'মৌলভীবাজার', 'ময়মনসিংহ', 'মেহেরপুর', 'যশোর', 'রাঙামাটি', 'রাজবাড়ী', 'রাজশাহী', 'রংপুর', 'লালমনিরহাট', 'লক্ষ্মীপুর', 'শেরপুর', 'শরিয়তপুর', 'সাতক্ষীরা', 'সুনামগঞ্জ', 'সিরাজগঞ্জ', 'সিলেট', 'হবিগঞ্জ' );
+?>
+<?php
+	if($mptb_city == 'নেত্রকোনা' || $mptb_city == 'নরসিংদী' || $mptb_city == 'চাঁদপুর' || $mptb_city == 'ভোলা' || $mptb_city == 'কিশোরগঞ্জ') {$adjust_time = '-1 minutes';}
+	elseif($mptb_city == 'লক্ষ্মীপুর') {$adjust_time = '-2 minutes';}
+	elseif($mptb_city == 'ব্রাহ্মণবাড়িয়া' || $mptb_city == 'কুমিল্লা' || $mptb_city == 'নোয়াখালী') {$adjust_time = '-3 minutes';}
+	elseif($mptb_city == 'সুনামগঞ্জ' || $mptb_city == 'হবিগঞ্জ' || $mptb_city == 'ফেনী') {$adjust_time = '-4 minutes';}
+	elseif($mptb_city == 'মৌলভীবাজার' || $mptb_city == 'চট্টগ্রাম') {$adjust_time = '-5 minutes';}
+	elseif($mptb_city == 'সিলেট' || $mptb_city == 'খাগড়াছড়ি' || $mptb_city == 'কক্সবাজার') {$adjust_time = '-6 minutes';}
+	elseif($mptb_city == 'রাঙামাটি' || $mptb_city == 'বান্দরবান') {$adjust_time = '-7 minutes';}
+	elseif($mptb_city == 'মাদারীপুর' || $mptb_city == 'ঝালকাঠি' || $mptb_city == 'বরগুনা') {$adjust_time = '+1 minutes';}
+	elseif($mptb_city == 'শেরপুর' || $mptb_city == 'জামালপুর' || $mptb_city == 'টাঙ্গাইল' || $mptb_city == 'মানিকগঞ্জ' || $mptb_city == 'ফরিদপুর' || $mptb_city == 'গোপালগঞ্জ' || $mptb_city == 'পিরোজপুর') {$adjust_time = '+2 minutes';}
+	elseif($mptb_city == 'কুড়িগ্রাম' || $mptb_city == 'সিরাজগঞ্জ' || $mptb_city == 'বাগেরহাট' || $mptb_city == 'রাজবাড়ী') {$adjust_time = '+3 minutes';}
+	elseif($mptb_city == 'লালমনিরহাট' || $mptb_city == 'গাইবান্ধা' || $mptb_city == 'বগুড়া' || $mptb_city == 'মাগুরা' || $mptb_city == 'নড়াইল' || $mptb_city == 'খুলনা') {$adjust_time = '+4 minutes';}
+	elseif($mptb_city == 'রংপুর' || $mptb_city == 'পাবনা' || $mptb_city == 'কুষ্টিয়া' || $mptb_city == 'ঝিনাইদহ' || $mptb_city == 'যশোর' || $mptb_city == 'সাতক্ষীরা') {$adjust_time = '+5 minutes';}
+	elseif($mptb_city == 'নীলফামারী' || $mptb_city == 'জয়পুরহাট' || $mptb_city == 'নওগাঁ' || $mptb_city == 'নাটোর' || $mptb_city == 'চুয়াডাঙ্গা') {$adjust_time = '+6 minutes';}
+	elseif($mptb_city == 'রাজশাহী' || $mptb_city == 'দিনাজপুর' || $mptb_city == 'মেহেরপুর' || $mptb_city == 'পঞ্চগড়') {$adjust_time = '+7 minutes';}
+	elseif($mptb_city == 'ঠাকুরগাঁও' || $mptb_city == 'চাঁপাইনবাবগঞ্জ') {$adjust_time = '+8 minutes';}
+	else {$adjust_time = '';}
 ?>
 <div class="prayer-html-box" id="prayerDis">
 	<script type="text/javascript">
@@ -236,7 +256,7 @@ function mptb_muslim_prayer_time() {
 			<td colspan="2"><form id="city_time" action="#prayerDis" method="post" name="city_time">
 				<select id="cityname" name="cityname" class="district-box" onChange="prayerOnChange();">
 					<option value="" selected="selected">
-						<?php if($_POST['cityname']) { echo $_POST['cityname']; } else { echo 'ঢাকা'; } ?>
+						<?php if($_POST['cityname']) { echo $_POST['cityname']; } else { echo $mptb_city; } ?>
 					</option>
 					<?php foreach($city_states as $city) { echo '<option value="'.$city.'">' . $city . '</option>'; } ?>
 				</select>
@@ -285,27 +305,19 @@ function mptb_muslim_prayer_time() {
 						echo 'সেহরীর শেষ সময় - ভোর ' . bn_prayer_time($time_schedule['sehri']);
 					}
 				} else {
-					echo 'সেহরীর শেষ সময় - ভোর ' . bn_prayer_time($time_schedule['sehri']);
+					if($adjust_time != ''){
+						echo 'সেহরীর শেষ সময় - ভোর ' . bn_prayer_time(prayer_district_time($time_schedule['sehri'], $adjust_time));
+					} else {
+						echo 'সেহরীর শেষ সময় - ভোর ' . bn_prayer_time($time_schedule['sehri']);
+					}
 				}
 				?>
 				</span>
 			</td>
 		</tr>
-		<?php } ?>
-		<?php
-				if($t4b != 0) {
-		?>
+		<?php } if($t4b != 0) { ?>
 		<tr>
-			<td>
-				<span class="prayer-name">
-					<?php if($t4b == 1) { echo 'ফজর'; } ?>
-					<?php if($t4b == 2) { echo 'যোহর'; } ?>
-					<?php if($t4b == 3) { echo 'আছর'; } ?>
-					<?php if($t4b == 4) { echo 'মাগরিব'; } ?>
-					<?php if($t4b == 5) { echo 'এশা'; } ?>
-					<?php if($t4b == 6) { echo 'সূর্যোদয়'; } ?>
-				</span>
-			</td>
+			<td><span class="prayer-name"><?php if($t4b == 1) { echo 'ফজর'; } ?><?php if($t4b == 2) { echo 'যোহর'; } ?><?php if($t4b == 3) { echo 'আছর'; } ?><?php if($t4b == 4) { echo 'মাগরিব'; } ?><?php if($t4b == 5) { echo 'এশা'; } ?><?php if($t4b == 6) { echo 'সূর্যোদয়'; } ?></span></td>
 			<td><span class="prayer-time">
 				<?php
 				if($_POST['submit_city']) {
@@ -423,12 +435,22 @@ function mptb_muslim_prayer_time() {
 						if($t4b == 6) { echo 'ভোর ' . bn_prayer_time($time_schedule['sunrise']); }
 					}
 				} else {
-					if($t4b == 1) { echo 'ভোর ' . bn_prayer_time($time_schedule['fajr']); }
-					if($t4b == 2) { echo 'দুপুর ' . bn_prayer_time($time_schedule['duhr']); }
-					if($t4b == 3) { echo 'বিকাল ' . bn_prayer_time($time_schedule['asr']); }
-					if($t4b == 4) { echo 'সন্ধ্যা ' . bn_prayer_time($time_schedule['maghrib']); }
-					if($t4b == 5) { echo 'রাত ' . bn_prayer_time($time_schedule['isha']); }
-					if($t4b == 6) { echo 'ভোর ' . bn_prayer_time($time_schedule['sunrise']); }
+					if($adjust_time != ''){
+						if($t4b == 1) { echo 'ভোর ' . bn_prayer_time(prayer_district_time($time_schedule['fajr'], $adjust_time)); }
+						if($t4b == 2) { echo 'দুপুর ' . bn_prayer_time(prayer_district_time($time_schedule['duhr'], $adjust_time)); }
+						if($t4b == 3) { echo 'বিকাল ' . bn_prayer_time(prayer_district_time($time_schedule['asr'], $adjust_time)); }
+						if($t4b == 4) { echo 'সন্ধ্যা ' . bn_prayer_time(prayer_district_time($time_schedule['maghrib'], $adjust_time)); }
+						if($t4b == 5) { echo 'রাত ' . bn_prayer_time(prayer_district_time($time_schedule['isha'], $adjust_time)); }
+						if($t4b == 6) { echo 'ভোর ' . bn_prayer_time(prayer_district_time($time_schedule['sunrise'], $adjust_time)); }
+					}
+					else {
+						if($t4b == 1) { echo 'ভোর ' . bn_prayer_time($time_schedule['fajr']); }
+						if($t4b == 2) { echo 'দুপুর ' . bn_prayer_time($time_schedule['duhr']); }
+						if($t4b == 3) { echo 'বিকাল ' . bn_prayer_time($time_schedule['asr']); }
+						if($t4b == 4) { echo 'সন্ধ্যা ' . bn_prayer_time($time_schedule['maghrib']); }
+						if($t4b == 5) { echo 'রাত ' . bn_prayer_time($time_schedule['isha']); }
+						if($t4b == 6) { echo 'ভোর ' . bn_prayer_time($time_schedule['sunrise']); }
+					}
 				}
 				?>
 			</span></td>
@@ -454,7 +476,7 @@ extract($args);
 if(is_admin())
 	include 'admin-settings.php';
 
-register_sidebar_widget('T4B Muslim Prayer Time', 'widget_muslim_prayer_time');
+wp_register_sidebar_widget('T4BMPT', 'T4B Muslim Prayer Time', 'widget_muslim_prayer_time');
 
 add_shortcode('prayer_time', 'mptb_muslim_prayer_time');
 ?>

@@ -1,9 +1,9 @@
 === Muslim Prayer Time BD ===
 Contributors: moviehour
 Requires at least: 3.0
-Tested up to: 3.8.1
-Tags: prayer, muslim, prayer time, namaz time, namaz, salah, salat, islam, bangladesh
-Stable Tag: 1.1
+Tested up to: 4.1
+Tags: Iftekhar, muslim, prayer time, namaz time, salah, salat, bangladesh, tips4blog
+Stable Tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ From the frontend, you can display a daily prayer timetable for your own place. 
 
 = 1.1 (3-2-2014) = 
 * Second release.
+
+= 1.2 (27-12-2014) = 
+* Third release.
 
 
 == Installation ==
